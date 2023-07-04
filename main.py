@@ -5,6 +5,7 @@ from flask import Flask, jsonify, render_template, request, send_file
 import os
 import geopandas as gpd
 import rasterio
+from matplotlib import colors
 from rasterio.mask import mask
 import zipfile
 import numpy as np
@@ -68,7 +69,7 @@ def clip_shape_zip(shape_zip_file, tif_file):
 @app.route('/')
 def index():
     # Read the TIFF file using Pillow
-    tif_file = "templates/uk_swi/uk_swi_199.tif"
+    tif_file = "templates/uk_rain/rainHourly_100.tif"
     image = Image.open(tif_file)
 
     # Convert the image to a NumPy array
@@ -78,14 +79,20 @@ def index():
     fig, ax = plt.subplots()
 
     # Set the color contrast (colormap)
-    cmap = plt.cm.plasma  # Change this to the desired colormap
+    cmap = plt.cm.viridis  # Change this to the desired colormap
 
     # Get the minimum and maximum values from the array
-    min_value = 39
-    max_value = np.max(array)
+    min_value = -1
+    max_value = np.max(array)+1
 
-    # Apply the colormap to the plot with adjusted color range
-    im = ax.imshow(array, cmap=cmap, vmin=min_value, vmax=max_value)
+    # Normalize the data using the actual min and max values
+    norm = colors.Normalize(vmin=min_value, vmax=max_value)
+
+    # Apply the colormap to the plot with adjusted color range and normalization
+    im = ax.imshow(array, cmap=cmap, norm=norm)
+
+    # Set the background color as transparent
+    fig.patch.set_alpha(0.0)
 
     cbar = plt.colorbar(im)
 
@@ -93,16 +100,17 @@ def index():
     cbar.set_ticks([min_value, max_value])
 
     # Set corresponding tick labels
-    cbar.set_ticklabels([f"{min_value}", f"{max_value}"])
+    cbar.set_ticklabels([f"{min_value+1}", f"{max_value-1}"])
 
     # Encode the plot image to base64 string
     buffer = io.BytesIO()
-    plt.savefig(buffer, format='png')
+    plt.savefig(buffer, format='png', transparent=True)
     buffer.seek(0)
     base64_image = base64.b64encode(buffer.read()).decode()
 
     # Pass the base64 image to the template
     return render_template('index.html', plot_image=base64_image)
+
 
 @app.route('/upload')
 def upload_details():
