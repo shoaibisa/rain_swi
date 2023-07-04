@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Result</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="headline">SWI Result</h1>
+      <div class="content">
+        <p>The SWI calculation is complete.</p>
+        <p>Click the button below to download the clipped TIFF file:</p>
+        <a
+          class="download"
+          href="{{ url_for('download', filename=clipped_tiff_file|get_filename) }}"
+          >Download Clipped TIFF</a
+        >
+      </div>
+    </div>
+  </body>
+</html>
