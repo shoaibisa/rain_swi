@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='icon.jpg') }}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='result.css') }}"
+    />
+    <title>SWI vs Rainfall graph</title>
+  </head>
+  <body>
+    <div id="swi_vs_rain" class="container">
+      <div class="images-s">
+        <div class="">
+          <h1>The time series of 60-min rainfalls and soil–water index</h1>
+          <p>SWI vs Rainfall graph from 2013-06-10 to 2013-06-19</p>
+          <img
+            src="data:image/png;base64,{{ image_rain_swi }}"
+            alt="SWI vs Rainfall graph"
+          />
+        </div>
+      </div>
+    </div>
+    <a href="{{ download_url }}" class="btn btn-primary">Download CSV</a>
+  </body>
+</html>

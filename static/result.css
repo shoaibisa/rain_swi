@@ -1,0 +1,137 @@
+/* Add your custom CSS styles here */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="file"] {
+    display: block;
+    margin-top: 5px;
+}
+
+input[type="date"],
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.swi-info {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+}
+/* make container cnter and have hight and widdht */
+.container {
+    background-color: #fff;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 100wh;
+    height: 100vh;
+    text-align: center;
+
+}
+/* download ancor tage  */
+.download {
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* two div in a image div in  */
+.images {
+     
+        display: flex; /* Use flexbox layout */
+        flex-direction: row; /* Items are placed in a row */
+        justify-content: space-between; /* Put space between the items */
+      }
+
+.left-image {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 20px;
+    text-align: center;
+}
+.right-image  {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 20px;
+    text-align: center;
+}
+      
+.content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+/* @media only screen and (min-width: 768px) {
+
+    .images {
+        flex-direction: column;
+    }
+    .left-image {
+        width: 100%;
+    }
+    .right-image {
+        width: 100%;
+    }
+} */
+@media only screen and (min-device-width: 320px) and (max-device-width: 720px) {
+
+    .images {
+        flex-direction: column;
+    }
+    .left-image {
+        width: 100%;
+    }
+    .right-image {
+        width: 100%;
+    }
+}
+    
+
+.images-s {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
