@@ -1,24 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Result</title>
+    <title>SWI result</title>
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='result.css') }}"
     />
+    <link rel="icon" href="{{ url_for('static', filename='icon.jpg') }}" />
   </head>
   <body>
     <div class="container">
-      <h1 class="headline">SWI Result</h1>
+      <h1 class="headline">SOIL WATER INDEX</h1>
       <div class="content">
-        <p>The SWI calculation is complete.</p>
-        <p>Click the button below to download the clipped TIFF file:</p>
-        <a
-          class="download"
-          href="{{ url_for('download', filename=clipped_tiff_file|get_filename) }}"
-          >Download Clipped TIFF</a
-        >
+        <div>
+          <p>The SWI calculation is complete.</p>
+          <p>Click the button below to download the clipped TIFF file:</p>
+
+          <a
+            class="download"
+            href="{{ url_for('download', filename=clipped_tiff_file|get_filename) }}"
+            >Download Clipped TIFF</a
+          >
+        </div>
+      </div>
+      <!-- two images side by side with paragraph small below int it a div -->
+      <div class="images">
+        <div class="left-image">
+          <img
+            src="data:image/png;base64,{{ rain_image }}"
+            alt="Clipped TIFF"
+          />
+          <p>Precipitation (mm/hr)</p>
+        </div>
+        <div class="right-image">
+          <img src="data:image/png;base64,{{ swi_image }}" alt="Clipped TIFF" />
+          <p>Soil water index (mm)</p>
+        </div>
       </div>
     </div>
   </body>

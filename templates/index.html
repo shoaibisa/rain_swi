@@ -1,28 +1,37 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link
+<html>
+<head>
+  <link
       rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      type="text/css"
+      href="{{ url_for('static', filename='landing.css') }}"
     />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='icon.jpg') }}">
 
-    <title>Title</title>
-    <style>
-      #map {
-        height: 400px;
-        width: 600px;
+  <style>
+    /* CSS animation for snowfall effect */
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-100%);
       }
-    </style>
-  </head>
-  <body>
-    <h1>Hi</h1>
-    <div id="map"></div>
-       <img src="data:image/png;base64,{{ plot_image }}" alt="Plot">
-
-
-  </body>
+      100% {
+        transform: translateY(100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Soil Water Index Analysis</h1>
+    <div class="info">
+      <h2>About SWI</h2>
+      <p>The Soil Water Index (SWI) is a measure of soil moisture content, which indicates the availability of water in the soil for plant growth. It is derived from rainfall and precipitation data. SWI analysis helps in understanding the water balance in an area and can provide insights into potential risks of debris or slope failure caused by excessive rainfall.</p>
+    </div>
+    <div class="buttons">
+      <a href="/pixel_swi" class="button">SWI vs Rain Analysis</a>
+      <a href="/calculate_swi" class="button">SWI Analysis</a>
+    </div>
+  </div>
+  <div class="snowfall"></div>
+</body>
 </html>
