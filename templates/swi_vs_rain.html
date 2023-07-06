@@ -7,23 +7,22 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', filename='result.css') }}"
+      href="{{ url_for('static', filename='swivsrain.css') }}"
     />
     <title>SWI vs Rainfall graph</title>
   </head>
   <body>
     <div id="swi_vs_rain" class="container">
-      <div class="images-s">
-        <div class="">
-          <h1>The time series of 60-min rainfalls and soil–water index</h1>
+      <div class="images">
+        <div class="content">
+          <h1>The Time Series of 60-min Rainfalls and Soil–Water Index</h1>
           <p>SWI vs Rainfall graph from 2013-06-10 to 2013-06-19</p>
-          <img
-            src="data:image/png;base64,{{ image_rain_swi }}"
-            alt="SWI vs Rainfall graph"
-          />
         </div>
+        <img
+          src="data:image/png;base64,{{ image_rain_swi }}"
+          alt="SWI vs Rainfall graph"
+        />
       </div>
     </div>
-    <a href="{{ download_url }}" class="btn btn-primary">Download CSV</a>
   </body>
 </html>
