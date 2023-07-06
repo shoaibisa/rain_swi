@@ -174,7 +174,7 @@ def tif_to_img(tif_file, type):
 
     # Encode the plot image to base64 string
     buffer = io.BytesIO()
-    plt.savefig(buffer, format='png', transparent=True, dpi=1200)
+    plt.savefig(buffer, format='png', transparent=True)
     buffer.seek(0)
     base64_image = base64.b64encode(buffer.read()).decode()
 
@@ -237,7 +237,7 @@ def pixel_swi_post():
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax1.legend(lines + lines2, labels + labels2, loc='best')
 
-    plt.savefig('templates/swi_vs_rain.png', dpi=1200)
+    plt.savefig('templates/swi_vs_rain.png' )
     plt.close()
 
     # Convert the graph into base64-encoded string
