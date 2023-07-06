@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
       rel="stylesheet"
       type="text/css"
       href="{{ url_for('static', filename='landing.css') }}"
     />
-    <link rel="icon" href="{{ url_for('static', filename='icon.jpg') }}">
-
-  <style>
-    /* CSS animation for snowfall effect */
-    @keyframes snowfall {
-      0% {
-        transform: translateY(-100%);
-      }
-      100% {
-        transform: translateY(100%);
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Soil Water Index Analysis</h1>
-    <div class="info">
-      <h2>About SWI</h2>
-      <p>The Soil Water Index (SWI) is a measure of soil moisture content, which indicates the availability of water in the soil for plant growth. It is derived from rainfall and precipitation data. SWI analysis helps in understanding the water balance in an area and can provide insights into potential risks of debris or slope failure caused by excessive rainfall.</p>
+    <link rel="icon" href="{{ url_for('static', filename='icon.jpg') }}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Soil Water Index Analysis</h1>
+      <div class="info">
+        <h2>About SWI</h2>
+        <p>
+          The Soil Water Index (SWI) is a measure of soil moisture content,
+          which indicates the availability of water in the soil for plant
+          growth. It is derived from rainfall and precipitation data. SWI
+          analysis helps in understanding the water balance in an area and can
+          provide insights into potential risks of debris or slope failure
+          caused by excessive rainfall.
+        </p>
+      </div>
+      <div class="buttons">
+        <a href="/pixel_swi" class="button">SWI vs Rain Analysis</a>
+        <a href="/calculate_swi" class="button">SWI Analysis</a>
+      </div>
     </div>
-    <div class="buttons">
-      <a href="/pixel_swi" class="button">SWI vs Rain Analysis</a>
-      <a href="/calculate_swi" class="button">SWI Analysis</a>
-    </div>
-  </div>
-  <div class="snowfall"></div>
-</body>
+    <div class="snowfall"></div>
+  </body>
 </html>
