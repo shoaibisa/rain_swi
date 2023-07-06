@@ -168,7 +168,6 @@ def tif_to_img(tif_file, type):
     # plt.yticks(np.arange(min_y[1], max_y[1]), np.arange)
     # Set the DPI of the figure
 
-
     plt.xticks(np.arange(min_x[0], max_x[0], 5.1))
     plt.yticks(np.arange(min_y[1], max_y[1], 5.1))
 
@@ -237,7 +236,7 @@ def pixel_swi_post():
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax1.legend(lines + lines2, labels + labels2, loc='best')
 
-    plt.savefig('templates/swi_vs_rain.png' )
+    plt.savefig('templates/swi_vs_rain.png')
     plt.close()
 
     # Convert the graph into base64-encoded string
@@ -255,7 +254,8 @@ def upload_details():
 
 @app.route('/calculate_swi', methods=['POST'])
 def calculate_swi():
-    shape_zip_file = request.files["shape_zip"]
+    # if shape file have
+
     date = request.form["date"]
     hour = request.form["hour"]
     # get the date
@@ -267,13 +267,21 @@ def calculate_swi():
         'templates', 'uk_rain', 'rainHourly_'+str(num_tif)+'.tif')
     # tiff_file_path = os.path.join('templates', 'uk_swi', 'uk_swi_1.tif')
 
-    try:
-        clipped_tiff_file = clip_shape_zip(shape_zip_file, tiff_file_path)
-    except ValueError as e:
-        return render_template('error.html', error=str(e))
+    #  data from checkbox
+    checkbox_value = request.form.get('checkbox')
 
-    # get image
-    image_swi = tif_to_img(clipped_tiff_file, "clip")
+    image_swi = None
+    if checkbox_value == "on":
+        shape_zip_file = request.files["shape_zip"]
+        try:
+            clipped_tiff_file = clip_shape_zip(shape_zip_file, tiff_file_path)
+        except ValueError as e:
+            return render_template('error.html', error=str(e))
+
+    else:
+        clipped_tiff_file = tiff_file_path
+    image_swi = tif_to_img(clipped_tiff_file, "swi")
+
     image_rain = tif_to_img(rain_tiff_file_path, "rain")
 
     return render_template('result.html', swi_image=image_swi, rain_image=image_rain, date=date, hour=hour, clipped_tiff_file=clipped_tiff_file)
@@ -297,4 +305,4 @@ def get_filename(file_path):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=4400)
+    app.run(host='0.0.0.0', port=4400)

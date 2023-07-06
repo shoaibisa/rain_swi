@@ -24,17 +24,19 @@
           >
         </div>
       </div>
-      <!-- two images side by side with paragraph small below int it a div -->
       <div class="images">
-        <div class="left-image">
+        <div class="image-container">
           <img
             src="data:image/png;base64,{{ rain_image }}"
-            alt="Clipped TIFF"
+            alt="Precipitation"
           />
           <p>Precipitation (mm/hr)</p>
         </div>
-        <div class="right-image">
-          <img src="data:image/png;base64,{{ swi_image }}" alt="Clipped TIFF" />
+        <div class="image-container">
+          <img
+            src="data:image/png;base64,{{ swi_image }}"
+            alt="Soil Water Index"
+          />
           <p>Soil water index (mm)</p>
         </div>
       </div>
